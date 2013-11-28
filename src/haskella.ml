@@ -4,18 +4,10 @@ open Message
 open Syntax
 
 (**
-  The toplevel accepts global value definitions `let x = e` and expressions,
-  separated by double semicolons `;;` when contained in a file.
 
-  Usage:
+    `haskella -i` runs the interactive loop
+    `haskella file1 file2` interprets the listed files
 
-    `haskella` runs the interactive loop
-
-    `haskella dat1 ... datN` evaluates the contents of files
-    `dat1`, ..., `datN` then runs the interactive loop.
-
-    `haskella -n dat1 ..., datN` evaluates the contents of files
-    `dat1`,...,`datN` and exits.
 *)
 
 exception Fatal_error of string
@@ -118,7 +110,7 @@ let main =
       [("-i", Arg.Set interactive, "do not run the interactive shell");
        ("-p", Arg.Int (fun n -> print_depth := n), "set print depth")]
       (fun f -> files := f :: !files)
-      "Usage: haskella [-p <int>] [-n] [file] ..." ;
+      "Usage: haskella [-p <int>] [-i] [file] ..." ;
     files := List.rev !files ;
     let ctx, env =
       try
