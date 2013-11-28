@@ -56,7 +56,7 @@ and type_of ctx = function
 	     type_error (string_of_expr e1 ^
 			 " is used as a function but its type is " ^
 			 string_of_type ty))
-	| Pair (e1, e2) -> TTimes (type_of ctx e1, type_of ctx e2)
+        | Pair (e1, e2) -> TTimes (type_of ctx e1, type_of ctx e2)
   | Fst e ->
       (match type_of ctx e with
 	   TTimes (ty1, _) -> ty1
@@ -71,3 +71,4 @@ and type_of ctx = function
 	     type_error (string_of_expr e ^
 			 " is used as a pair but its type is " ^
 			 string_of_type ty))
+

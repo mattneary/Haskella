@@ -39,7 +39,7 @@ rule token = parse
   | "::"            { CONS }
   | ";;"            { SEMICOLON2 }
   | '\"' [^'\"']* '\"' { let str = lexeme lexbuf in
-                        STRING (String.sub str 1 (String.length str - 2)) }
+			STRING (String.sub str 1 (String.length str - 2)) }
   | '%'             { MOD }
   | '('             { LPAREN }
   | ')'             { RPAREN }

@@ -33,4 +33,3 @@ let string_of msg pos = string_of_position pos ^ ":\n" ^ msg
 let syntax_error {lex_curr_p=pos} = string_of "Syntax error" pos
 
 let report = print_endline
-

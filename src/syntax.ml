@@ -1,12 +1,9 @@
 (** Abstract syntax *)
- 
+
 (** The type of variable names. *)
 type name = string
 
-(** Haskella Primitive types. *)
-(** Int and Bool serve as convenient primitives, TTimes 
-    and TList as product and sum types, respectively, and 
-    Arrow as the function type. **)
+(** Haskella primitive types. *)
 type htype =
     TInt (** integer [int] *)
   | TBool (** booleans [bool] *)
@@ -120,4 +117,3 @@ let rec subst s = function
   | Pair (e1, e2) -> Pair (subst s e1, subst s e2)
   | Fst e -> Fst (subst s e)
   | Snd e -> Snd (subst s e)
-
