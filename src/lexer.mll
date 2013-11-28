@@ -13,9 +13,9 @@
 let var = ['_' 'a'-'z' 'A'-'Z'] ['_' 'a'-'z' 'A'-'Z' '0'-'9']*
 
 rule token = parse
-    '#' [^'\n']* '\n' { incr_linenum lexbuf; token lexbuf }
+    '#' [^'\n']* '\n' { incr_linenum lexbuf; token lexbuf } (** Comments **)
   | '\n'            { incr_linenum lexbuf; token lexbuf }
-  | [' ' '\t']      { token lexbuf }
+  | [' ' '\t']      { token lexbuf }                        (** Keep reading after whitespace **)
   | ['0'-'9']+      { INT (int_of_string(lexeme lexbuf)) }
   | "bool"          { TBOOL }
   | "else"          { ELSE }
@@ -32,14 +32,14 @@ rule token = parse
   | "snd"           { SND }
   | "then"          { THEN }
   | "true"          { TRUE }
-  | "$use"           { USE }
-  | "$quit"          { QUIT }
+  | "$use"          { USE }
+  | "$quit"         { QUIT }
   | "with"          { WITH }
   | "->"            { ARROW }
   | "::"            { CONS }
   | ";;"            { SEMICOLON2 }
-  | '\"' [^'\"']* '\"' { let str = lexeme lexbuf in
-			STRING (String.sub str 1 (String.length str - 2)) }
+  | '\"' [^'\"']* '\"' { let str = lexeme lexbuf in (** String literal, with basic escaping of quotes **)
+			STRING (String.sub str 1 (String.length str - 2)) }  
   | '%'             { MOD }
   | '('             { LPAREN }
   | ')'             { RPAREN }
@@ -56,7 +56,4 @@ rule token = parse
   | '|'             { ALTERNATIVE }
   | var             { VAR (lexeme lexbuf) }
   | eof             { EOF }
-
-{
-}
 
