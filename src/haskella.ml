@@ -127,3 +127,4 @@ let main =
 	  Fatal_error msg -> Message.report msg ; exit 1
     in    
       if not !noninteractive then shell !print_depth ctx env
+

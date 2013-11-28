@@ -117,3 +117,4 @@ let rec subst s = function
   | Pair (e1, e2) -> Pair (subst s e1, subst s e2)
   | Fst e -> Fst (subst s e)
   | Snd e -> Snd (subst s e)
+
