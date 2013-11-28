@@ -4,18 +4,18 @@ open Message
 open Syntax
 
 (**
-  The toplevel accepts global value definitions [let x = e] and expressions,
-  separated by double semicolons [;;] when contained in a file.
+  The toplevel accepts global value definitions `let x = e` and expressions,
+  separated by double semicolons `;;` when contained in a file.
 
   Usage:
 
-    [minihaskell] runs the interactive loop
+    `haskella` runs the interactive loop
 
-    [minihaskell dat1 ... datN] evaluates the contents of files
-    [dat1], ..., [datN] then runs the interactive loop.
+    `haskella dat1 ... datN` evaluates the contents of files
+    `dat1`, ..., `datN` then runs the interactive loop.
 
-    [minihaskell -n dat1 ..., datN] evaluates the contents of files
-    [dat1],...,[datN] and exits.
+    `haskella -n dat1 ..., datN` evaluates the contents of files
+    `dat1`,...,`datN` and exits.
 *)
 
 exception Fatal_error of string
@@ -112,13 +112,13 @@ let shell n ctx env =
 let main =
   Sys.catch_break true ;
   let print_depth = ref 100 in
-  let noninteractive = ref false in
+  let interactive = ref false in
   let files = ref [] in
     Arg.parse
-      [("-n", Arg.Set noninteractive, "do not run the interactive shell");
+      [("-i", Arg.Set interactive, "do not run the interactive shell");
        ("-p", Arg.Int (fun n -> print_depth := n), "set print depth")]
       (fun f -> files := f :: !files)
-      "Usage: minihaskell [-p <int>] [-n] [file] ..." ;
+      "Usage: haskella [-p <int>] [-n] [file] ..." ;
     files := List.rev !files ;
     let ctx, env =
       try
@@ -126,5 +126,5 @@ let main =
       with
 	  Fatal_error msg -> Message.report msg ; exit 1
     in    
-      if not !noninteractive then shell !print_depth ctx env
+      if !interactive then shell !print_depth ctx env
 
