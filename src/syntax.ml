@@ -3,7 +3,10 @@
 (** The type of variable names. *)
 type name = string
 
-(** MiniHaskell types. *)
+(** Haskella Primitive types. *)
+(** Int and Bool serve as convenient primitives, TTimes 
+    and TList as product and sum types, respectively, and 
+    Arrow as the function type. **)
 type htype =
     TInt (** integer [int] *)
   | TBool (** booleans [bool] *)
@@ -11,7 +14,7 @@ type htype =
   | TArrow of htype * htype  (** Function type *)
   | TList of htype (** Lists [t list] *)
 
-(** MiniHaskell expressions *)
+(** Haskella expressions *)
 type expr =
     Var of name          (** variable *)
   | Int of int           (** integer constant *)

@@ -73,7 +73,7 @@ and exec_cmds n ce cmds =
 (** [shell ctx env] is the interactive shell. Here [ctx] and [env] are
     the context and environment of global definitions. *)
 let shell n ctx env =
-  print_string ("MiniHaskell. Press ") ;
+  print_string ("Haskella. Press ") ;
   print_string (match Sys.os_type with
                     "Unix" | "Cygwin" -> "Ctrl-D"
                   | "Win32" -> "Ctrl-Z"
@@ -85,7 +85,7 @@ let shell n ctx env =
       while true do
         try
           (* read a line, parse it and exectute it *)
-          print_string "MiniHaskell> ";
+          print_string "Haskella$ ";
           let str = read_line () in
           let lex = Message.lexer_from_string str in
           let cmds =
