@@ -1,6 +1,6 @@
 TARGET=src/haskella
 
-all: build clean
+all: build
 
 build:
 	ocamlbuild $(TARGET).native
