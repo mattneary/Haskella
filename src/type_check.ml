@@ -5,11 +5,11 @@ open Syntax
 (** Exception indicating a type-checking error. *)
 exception Type_error of string
 
-(** [ty_error msg] raises exception [Type_error msg]. *)
+(** `ty_error msg` raises exception `Type_error msg`. *)
 let type_error msg = raise (Type_error msg)
 
-(** [check ctx ty e] checks that expression [e] has type [ty] in context [ctx].
-    It raises [Type_error] if it does not. *)
+(** `check ctx ty e` checks that expression `e` has type `ty` in context `ctx`.
+    It raises `Type_error` if it does not. *)
 let rec check ctx ty e =
   let ty' = type_of ctx e in
     if ty' <> ty then
@@ -17,8 +17,8 @@ let rec check ctx ty e =
 	(string_of_expr e ^ " has type " ^ string_of_type ty' ^
 	 " but is used as if it had type " ^ string_of_type ty)
 
-(** [type-of ctx e] computes the type of expression [e] in context [ctx].
-    It raises [Type_error] if [e] does not have a type. *)
+(** `type-of ctx e` computes the type of expression `e` in context `ctx`.
+    It raises `Type_error` if `e` does not have a type. *)
 and type_of ctx = function
   | Var x ->
       (try List.assoc x ctx with

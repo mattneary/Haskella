@@ -88,7 +88,7 @@ let rec interp env = function
 	 | _ -> runtime_error "List expected in match")
 
 
-(** [print_result n v] prints at most [n] nodes of the value [v]. *)
+(** `print_result n v` prints at most `n` nodes of the value `v`. *)
 let rec print_result n v =
   (if n = 0 then
      print_string "..."
@@ -96,7 +96,7 @@ let rec print_result n v =
      match v with
 	 VInt k -> print_int k
        | VBool b -> print_string (string_of_bool b)
-       | VNil ty -> print_string ("[" ^ string_of_type ty ^ "]")
+       | VNil ty -> print_string ("`" ^ string_of_type ty ^ "`")
        | VClosure (env, Pair (e1, e2)) ->
 	  print_char '(' ;
 	  print_result (n/2) (interp env e1) ;
