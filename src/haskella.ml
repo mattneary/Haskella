@@ -77,7 +77,7 @@ let shell n ctx env =
       while true do
 	try
 	  (* read a line, parse it and exectute it *)
-	  print_string "Haskella$ ";
+	  print_string "> ";
 	  let str = read_line () in
 	  let lex = Message.lexer_from_string str in
 	  let cmds =

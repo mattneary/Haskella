@@ -21,9 +21,9 @@ All functions must be typed, including lambdas. The following
 utilizes some slightly more complex annotations.
 
 ```haskell
-a f:int->int x:int = f x
---> val a : (int -> int) -> int -> int
-a (fun x:int -> x + 1) 2
---> int = 3
+> a f:int->int x:int = f x
+-: val a : (int -> int) -> int -> int
+> a (fun x:int -> x + 1) 2
+-: int = 3
 ```
 
