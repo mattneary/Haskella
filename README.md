@@ -9,8 +9,8 @@ classic Lisp interpreter with error throwing bolted on evaluates
 the code's structure.
 
 ## Getting Started
-All functions need to be explicitly typed, and `let` is used, as in
-OCaml, in the definition of functions.
+All functions need to be explicitly typed, with arguments typed
+by an inline postfix notation.
 
 ```haskell
 not b:bool = if b then false else true
