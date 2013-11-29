@@ -14,5 +14,6 @@ OCaml, in the definition of functions.
 
 ```haskell
 not b:bool = if b then false else true
+sum x:int y:int = x + y
 ```
 
