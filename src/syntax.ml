@@ -12,34 +12,35 @@ type htype =
   | TList of htype (** Lists [t list] *)
 
 (** Haskella expressions *)
+(** Product types are used as custom data-structures. *)
 type expr =
-    Var of name          (** variable *)
-  | Int of int           (** integer constant *)
-  | Bool of bool         (** boolean constant *)
-  | Times of expr * expr (** product [e1 * e2] *)
-  | Divide of expr * expr(** quotient [e1 / e2] *)
-  | Mod of expr * expr   (** remainder [e1 % e2] *)
-  | Plus of expr * expr  (** sum [e1 + e2] *)
-  | Minus of expr * expr (** difference [e1 - e2] *)
-  | Equal of expr * expr (** integer equality [e1 = e2] *)
-  | Less of expr * expr  (** integer comparison [e1 < e2] *)
-  | If of expr * expr * expr (** conditional [if e1 then e2 else e3] *)
-  | Fun of name * htype * expr (** function [fun x:t -> e] *)
-  | Apply of expr * expr (** application [e1 e2] *)
-  | Pair of expr * expr  (** pair [(e1, e2)] *)
-  | Fst of expr          (** first projection [fst e] *)
-  | Snd of expr          (** second projection [snd e] *)
-  | Rec of name * htype * expr (** recursion [rec x:t is e] *)
-  | Nil of htype         (** empty list *)
-  | Cons of expr * expr  (** cons list [e1 :: e2] *)
-  | Match of expr * htype * expr * name * name * expr (** list decomposition [match e with [t] -> e1 | x::y -> e2] *)
+    Var of name 
+  | Int of int
+  | Bool of bool
+  | Times of expr * expr
+  | Divide of expr * expr
+  | Mod of expr * expr
+  | Plus of expr * expr
+  | Minus of expr * expr
+  | Equal of expr * expr
+  | Less of expr * expr
+  | If of expr * expr * expr
+  | Fun of name * htype * expr
+  | Apply of expr * expr
+  | Pair of expr * expr
+  | Fst of expr
+  | Snd of expr
+  | Rec of name * htype * expr
+  | Nil of htype
+  | Cons of expr * expr
+  | Match of expr * htype * expr * name * name * expr
 
 (** Toplevel commands *)
 type toplevel_cmd =
-    Expr of expr       (** an expression to be evaluated *)
-  | Def of name * expr (** toplevel definition [let x = e] *)
-  | Use of string      (** load a file [$use "<filename>"] *)
-  | Quit               (** exit toplevel [$quit] *)
+    Expr of expr
+  | Def of name * expr
+  | Use of string
+  | Quit
 
 (** Conversion from a type to a string *)
 let string_of_type ty =
