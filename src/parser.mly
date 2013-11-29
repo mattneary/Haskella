@@ -89,10 +89,14 @@ expr:
   | boolean             { $1 }
   | expr CONS expr      { Cons ($1, $3) }
   | IF expr THEN expr ELSE expr	{ If ($2, $4, $6) }
-  | FUN VAR COLON ty ARROW expr { Fun ($2, $4, $6) }
+  | FUN lambda { $2 }
   | REC VAR COLON ty IS expr { Rec ($2, $4, $6) }
   | MATCH expr WITH nil ARROW expr ALTERNATIVE VAR CONS VAR ARROW expr
       { Match ($2, $4, $6, $8, $10, $12) }
+
+lambda:
+  | VAR COLON ty ARROW expr { Fun ($1, $3, $5) }
+  | VAR COLON ty lambda { Fun ($1, $3, $4) }
 
 app:
     app non_app         { Apply ($1, $2) }
