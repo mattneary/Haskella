@@ -74,7 +74,7 @@ cmd:
   | USE STRING { Use $2 }
   | QUIT       { Quit }
 
-def: LET VAR EQUAL expr { Def ($2, $4) }
+def: VAR EQUAL expr { Def ($1, $3) }
 
 expr:
   | non_app             { $1 }
