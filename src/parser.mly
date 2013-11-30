@@ -81,6 +81,7 @@ func:
 def: 
   | VAR EQUAL expr { Def ($1, $3) }
   | VAR func { Def ($1, $2) }
+  | VAR COLON ty ARROW ty VAR VAR EQUAL expr { Def ($1, Fun ($7, $3, $9)) }
 
 expr:
   | non_app             { $1 }

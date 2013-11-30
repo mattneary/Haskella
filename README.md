@@ -27,3 +27,9 @@ utilizes some slightly more complex annotations.
 -: int = 3
 ```
 
+## To Do
+The signature notation for typing, which is not yet documented,
+will form a flipped signature, which either the evaluator or a
+more complex parser would need to correct. The nature of the
+recursion is from inner, more nested functions out.
+
